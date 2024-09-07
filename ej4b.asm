@@ -19,9 +19,35 @@ halt:
 	JMP halt
 
 sumE10S:
-	; COMPLETAR
+	PUSH |R7|, R3   ; Guardamos valores inciales de registros en la pila
+	PUSH |R7|, R4 
+	PUSH |R7|, R5 
+    PUSH |R7|, R6
 	
-	RET|R7|
+	SET R3, 0x00 	; Índice
+	SET R4, 0x01    ; Incremento
+	
+	loop:
+		CMP R3, R2   ; Condición del búcle i >= size
+		JGE fin
+		
+		LOAD R5, [R0 + R3]  ; ADDR + i
+		LOAD R6, [R1 + R3]
+
+		ADDE10S R5, R6
+
+		STR [R0 + R3], R5  ; Guardamos el valor en el arreglo
+		STR [R1 + R3], R5
+
+		ADD R3, R4    		; i++
+		JMP loop 
+
+	fin:
+		POP |R7|, R6    ; Devolvemos la pila a su estado original
+		POP |R7|, R5
+		POP |R7|, R4
+		POP |R7|, R3
+		RET|R7|
 
 
 p:

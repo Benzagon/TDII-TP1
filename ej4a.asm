@@ -17,9 +17,22 @@ halt:
 	JMP halt
 
 processArray:
-	; COMPLETAR
-	
-	RET|R7|
+	PUSH |R7|, R3   ; Guardamos el valor inicial de R3 en la pila
+	PUSH |R7|, R4   ; Guardamos el valor inicial de R4 en la pila
+	SET R3, 0x00 	; Índice
+	SET R4, 0x02    ; Incremento
+
+	loop:
+		CMP R3, R1        ; Condición del loop
+		JGE fin
+		ADDINMEM |R0 + R3|
+		ADD R3, R4        ; Incremento
+		JMP loop
+
+	fin:
+		POP |R7|, R4   ; Regresamos los registros a sus valores originales
+		POP |R7|, R3
+		RET |R7|
 
 
 p:
