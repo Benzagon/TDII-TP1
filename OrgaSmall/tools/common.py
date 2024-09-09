@@ -100,12 +100,12 @@ def tokenizator(filename):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Assembly code constants
 
-type_RR = ["ADD","ADC","SUB","AND","OR" ,"XOR","CMP","MOV"]
+type_RR = ["ADD","ADC","SUB","AND","OR" ,"XOR","CMP","MOV", "ADDE10S"]
 type_SR = ["PUSH", "POP", "CALL"]
 type_S  = ["RET"]
 type_RM = ["STR","LOAD"]
 type_M  = ["JMP","JC","JZ","JN","JO"]
-type_RF = ["READF","LOADF"]
+type_RF = ["READF","LOADF","ADDINMEM"]
 type_RS = ["SHRA","SHR","SHL"]
 type_RI = ["SET"]
 def_DB  = ["DB"]
@@ -114,7 +114,7 @@ opcodes = {"ADD"  : 1,  "ADC"  : 2, "SUB"   : 3,
            "AND"  : 4,  "OR"   : 5, "XOR"   : 6,
            "CMP"  : 7,   "MOV" : 8,
            "PUSH" : 9,  "POP"  : 10,
-           "CALL" : 11, "CALLm": 12, "RET"  : 13,
+           "CALL" : 11, "CALLm": 12, "RET"  : 13, "ADDINMEM" : 14, "ADDE10S" : 15,
            "STR"  : 16, "LOAD" : 17, "STRr" : 18, "LOADr": 19,
            "JMP"  : 20, "JC"   : 21, "JZ"   : 22, "JN"   : 23, "JO"  :24,
            "SHRA" : 25, "SHR"  : 26, "SHL"  : 27,
