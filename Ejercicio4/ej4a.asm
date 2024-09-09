@@ -25,7 +25,7 @@ processArray:
 	loop:
 		CMP R3, R1        ; Condición del loop
 		JGE fin
-		ADDINMEM |R0 + R3|
+		ADDINMEM [R0 + R3]
 		ADD R3, R4        ; Incremento
 		JMP loop
 
