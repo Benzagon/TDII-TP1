@@ -29,15 +29,22 @@ sumE10S:
 	
 	loop:
 		CMP R3, R2   ; Condición del búcle i >= size
-		JGE fin
+		JZ fin
 		
-		LOAD R5, [R0 + R3]  ; ADDR + i
-		LOAD R6, [R1 + R3]
+		PUSH |R7|, R0     	; Guardamos el valor de R0 y R1
+		PUSH |R7|, R1    	
+		ADD R0, R3		  	; ADDR + i
+		ADD R1, R3		  	
+		LOAD R5, [R0]
+		LOAD R6, [R1]
 
 		ADDE10S R5, R6
 
-		STR [R0 + R3], R5  ; Guardamos el valor en el arreglo
-		STR [R1 + R3], R5
+		STR [R0], R5  ; Guardamos el valor en el arreglo
+		STR [R1], R5
+
+		POP |R7|, R1   ; Retornamos R0 y R1 a sus valores sin i
+		POP |R7|, R0
 
 		ADD R3, R4    		; i++
 		JMP loop 
@@ -48,7 +55,6 @@ sumE10S:
 		POP |R7|, R4
 		POP |R7|, R3
 		RET|R7|
-
 
 p:
 DB 0x01

@@ -1,0 +1,64 @@
+   main |00| SET R7 , 0xFF
+        |02| SET R0 , p
+        |04| SET R1 , t
+        |06| SET R2 , 0x10
+        |08| CALL | R7 | , sumE10S
+   halt |0a| JMP halt
+sumE10S |0c| PUSH | R7 | , R3
+        |0e| PUSH | R7 | , R4
+        |10| PUSH | R7 | , R5
+        |12| PUSH | R7 | , R6
+        |14| SET R3 , 0x00
+        |16| SET R4 , 0x01
+   loop |18| CMP R3 , R2
+        |1a| JZ fin
+        |1c| PUSH | R7 | , R0
+        |1e| PUSH | R7 | , R1
+        |20| ADD R0 , R3
+        |22| ADD R1 , R3
+        |24| LOAD R5 , [ R0 ]
+        |26| LOAD R6 , [ R1 ]
+        |28| ADDE10S R5 , R6
+        |2a| STR [ R0 ] , R5
+        |2c| STR [ R1 ] , R5
+        |2e| POP | R7 | , R1
+        |30| POP | R7 | , R0
+        |32| ADD R3 , R4
+        |34| JMP loop
+    fin |36| POP | R7 | , R6
+        |38| POP | R7 | , R5
+        |3a| POP | R7 | , R4
+        |3c| POP | R7 | , R3
+        |3e| RET | R7 |
+      p |40| DB 0x01
+        |41| DB 0x02
+        |42| DB 0x04
+        |43| DB 0x08
+        |44| DB 0x03
+        |45| DB 0x03
+        |46| DB 0xA1
+        |47| DB 0xC0
+        |48| DB 0xFF
+        |49| DB 0x40
+        |4a| DB 0x55
+        |4b| DB 0xCC
+        |4c| DB 0xBD
+        |4d| DB 0x45
+        |4e| DB 0x9A
+        |4f| DB 0xEE
+      t |50| DB 0x01
+        |51| DB 0x01
+        |52| DB 0x34
+        |53| DB 0x02
+        |54| DB 0x03
+        |55| DB 0x23
+        |56| DB 0xAA
+        |57| DB 0xCF
+        |58| DB 0x0F
+        |59| DB 0x4F
+        |5a| DB 0x50
+        |5b| DB 0x0C
+        |5c| DB 0xC0
+        |5d| DB 0x54
+        |5e| DB 0x88
+        |5f| DB 0xA0

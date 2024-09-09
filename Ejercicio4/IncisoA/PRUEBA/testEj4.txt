@@ -1,0 +1,36 @@
+        main |00| SET R7 , 0xFF
+             |02| SET R0 , p
+             |04| SET R1 , 0x10
+             |06| CALL | R7 | , processArray
+        halt |08| JMP halt
+processArray |0a| PUSH | R7 | , R3
+             |0c| PUSH | R7 | , R4
+             |0e| SET R3 , 0x00
+             |10| SET R4 , 0x02
+        loop |12| CMP R3 , R1
+             |14| JZ fin
+             |16| PUSH | R7 | , R0
+             |18| ADD R0 , R3
+             |1a| ADDINMEM R0
+             |1c| POP | R7 | , R0
+             |1e| ADD R3 , R4
+             |20| JMP loop
+         fin |22| POP | R7 | , R4
+             |24| POP | R7 | , R3
+             |26| RET | R7 |
+           p |28| DB 0x01
+             |29| DB 0x02
+             |2a| DB 0x04
+             |2b| DB 0x08
+             |2c| DB 0x03
+             |2d| DB 0x03
+             |2e| DB 0xA1
+             |2f| DB 0xC0
+             |30| DB 0xFF
+             |31| DB 0x40
+             |32| DB 0x55
+             |33| DB 0xCC
+             |34| DB 0xBD
+             |35| DB 0x45
+             |36| DB 0x9A
+             |37| DB 0xEE

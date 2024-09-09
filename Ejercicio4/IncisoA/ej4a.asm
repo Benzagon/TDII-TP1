@@ -19,13 +19,19 @@ halt:
 processArray:
 	PUSH |R7|, R3   ; Guardamos el valor inicial de R3 en la pila
 	PUSH |R7|, R4   ; Guardamos el valor inicial de R4 en la pila
+
 	SET R3, 0x00 	; Índice
 	SET R4, 0x02    ; Incremento
 
 	loop:
 		CMP R3, R1        ; Condición del loop
-		JGE fin
-		ADDINMEM [R0 + R3]
+		JZ fin			  ; JMP si R3=R1
+
+		PUSH |R7|, R0     ; Guardamos el valor de R0
+		ADD R0, R3		  ; R0 + indice actual
+		ADDINMEM R0
+		POP |R7|, R0      
+		
 		ADD R3, R4        ; Incremento
 		JMP loop
 
@@ -36,19 +42,19 @@ processArray:
 
 
 p:
-DB 0x01
-DB 0x02
-DB 0x04
-DB 0x08
-DB 0x03
-DB 0x03
-DB 0xA1
-DB 0xC0
-DB 0xFF
-DB 0x40
-DB 0x55
-DB 0xCC
-DB 0xBD
-DB 0x45
-DB 0x9A
-DB 0xEE
+	DB 0x01
+	DB 0x02
+	DB 0x04
+	DB 0x08
+	DB 0x03
+	DB 0x03
+	DB 0xA1
+	DB 0xC0
+	DB 0xFF
+	DB 0x40
+	DB 0x55
+	DB 0xCC
+	DB 0xBD
+	DB 0x45
+	DB 0x9A
+	DB 0xEE
