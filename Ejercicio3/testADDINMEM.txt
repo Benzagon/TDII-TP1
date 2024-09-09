@@ -1,8 +1,0 @@
-main |00| SET R2 , 0x50
-     |02| SET R3 , 0x51
-     |04| SET R5 , 0x01
-     |06| SET R6 , 0x04
-     |08| STR [ R2 ] , R5
-     |0a| STR [ R3 ] , R6
-     |0c| LOAD R4 , [ R2 ]
-halt |0e| JMP halt
