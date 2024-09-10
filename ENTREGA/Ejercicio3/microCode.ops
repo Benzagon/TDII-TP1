@@ -100,7 +100,7 @@
     PC_load                         MM_enOut                       ; PC <- [Rx]
     reset_microOp
     
-01110: ; ADDINMEM |Rx|
+01110: ; ADDINMEM Rx
     ALU_enA                 RB_enOut RB_selectIndexOut=0        ; A <- Rx
     ALU_enB                 ALU_enOut ALU_OP=cte0x01            ; B <- 1
     ALU_OP=ADD              ALU_opW                             ; ALU_ADD
